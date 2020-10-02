@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+
+  app:
+    build: ./backend
+    image: backend
+    container_name: conf
+    ports:
+      - 8000:8000
+    command: python conf/manage.py runserver -h 0.0.0.0 -p 8000
+
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - FLASK_DEBUG=1
+    env_file:
+      - ./.env.dev
+
